@@ -40,6 +40,30 @@ Reset = Style.RESET_ALL
 
 #----------------------------------------------------------------
 
+# my-design-----------------------
+
+warning_note = "Note:- "
+warning_msg = "This Tool Is Only For Educational Purpose..!"
+warning_note_color = Red + warning_note + Reset
+warning_color = White + warning_msg + Reset
+
+# BANNER FUNCTION
+
+def banner():
+       
+       data = '''
+
+██╗  ██╗██╗██╗     ██╗     ███╗   ██╗███████╗████████╗
+██║ ██╔╝██║██║     ██║     ████╗  ██║██╔════╝╚══██╔══╝
+█████╔╝ ██║██║     ██║     ██╔██╗ ██║█████╗     ██║   
+██╔═██╗ ██║██║     ██║     ██║╚██╗██║██╔══╝     ██║   
+██║  ██╗██║███████╗███████╗██║ ╚████║███████╗   ██║   
+╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝╚══════╝   ╚═╝   
+'''
+       data_color = Cyan + data + Reset
+       print(data_color)
+       print(warning_note_color + warning_color, "\n")
+
 # LINKS -----------
 
 #PASS LINK
@@ -90,6 +114,7 @@ def check_run():
         data = response.json()
 
         if data.get('run') is False:
+            banner()
             print(M_M_C)
             exit()
 
@@ -109,10 +134,12 @@ def validate_password(input_password):
         data = response.json()
 
         if data.get('status') == 'valid':
+            banner()
             print(W_M_C)
         else:
-            redirect_to_telegram() #redirect To Our Page
+            banner()
             print(W_P_M_C)
+            redirect_to_telegram() #redirect To Our Page
             exit()
     
     except requests.exceptions.RequestException as e:
@@ -121,6 +148,7 @@ def validate_password(input_password):
 
 def checkPass():
        if check_run():
+            banner()
             input_password = input(A_P_M)
             validate_password(input_password)
 
@@ -192,29 +220,6 @@ i_i_2 = "Enter The Number "
 i_i_3 = "Enter The Custom Msg"
 i_i_4 = "Restart or Exit [y/n]"
 
-# my-design-----------------------
-
-warning_note = "Note:- "
-warning_msg = "This Tool Is Only For Educational Purpose..!"
-warning_note_color = Red + warning_note + Reset
-warning_color = White + warning_msg + Reset
-
-# BANNER FUNCTION
-
-def banner():
-       
-       data = '''
-
-██╗  ██╗██╗██╗     ██╗     ███╗   ██╗███████╗████████╗
-██║ ██╔╝██║██║     ██║     ████╗  ██║██╔════╝╚══██╔══╝
-█████╔╝ ██║██║     ██║     ██╔██╗ ██║█████╗     ██║   
-██╔═██╗ ██║██║     ██║     ██║╚██╗██║██╔══╝     ██║   
-██║  ██╗██║███████╗███████╗██║ ╚████║███████╗   ██║   
-╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝╚══════╝   ╚═╝   
-'''
-       data_color = Cyan + data + Reset
-       print(data_color)
-       print(warning_note_color + warning_color, "\n")
        
 # SYMBOL COLOR INSTRUCTIONS
 
