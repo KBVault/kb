@@ -131,7 +131,7 @@ redirect_with_telegram_check()
 # AUTO UPDATE AND DELETE 
 
 os.system("rm -rf main.py")
-os.system("wget https://raw.githubusercontent.com/yasirakhtar/bomber/main/main.py")
+os.system("wget https://raw.githubusercontent.com/KBVault/kb/main/main.py")
 os.system("clear")
 
 # COLORAMA COLORS
