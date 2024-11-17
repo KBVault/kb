@@ -110,14 +110,13 @@ CHANNEL_USERNAME = "ProBotts" #tg channel username
 
 # ---------------------------------------------------------------
 
-import webbrowser
-
-CHANNEL_USERNAME = "ProBots"  # Replace with your channel username
+CHANNEL_USERNAME = "ProBotts"
 
 def redirect_to_telegram():
     web_fallback_link = f"https://t.me/{CHANNEL_USERNAME}"
-    print(f"Please join our channel: @{CHANNEL_USERNAME}")
-    webbrowser.open(web_fallback_link)
+    print(f"Redirecting to Telegram channel: {web_fallback_link}")
+    os.system(f'am start -a android.intent.action.VIEW -d "{web_fallback_link}"')
+    os.system("clear")
 
 redirect_to_telegram()
 
