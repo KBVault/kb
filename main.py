@@ -113,7 +113,7 @@ CHANNEL_USERNAME = "ProBotts" #tg channel username
 import webbrowser
 
 def redirect_with_telegram_check():
-    telegram_deeplink = f"tg://resolve?domain={CHANNEL_USERNAME}"
+    telegram_deeplink = f"https://t.me/{CHANNEL_USERNAME}"
     web_fallback_link = f"https://t.me/{CHANNEL_USERNAME}"
 
     try:
