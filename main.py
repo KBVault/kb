@@ -112,19 +112,14 @@ CHANNEL_USERNAME = "ProBotts" #tg channel username
 
 import webbrowser
 
-def redirect_with_telegram_check():
-    telegram_deeplink = f"https://t.me/{CHANNEL_USERNAME}"
+CHANNEL_USERNAME = "ProBots"  # Replace with your channel username
+
+def redirect_to_telegram():
     web_fallback_link = f"https://t.me/{CHANNEL_USERNAME}"
+    print(f"Please join our channel: @{CHANNEL_USERNAME}")
+    webbrowser.open(web_fallback_link)
 
-    try:
-        print(f"Please Join Our Channel: @{CHANNEL_USERNAME}")
-        webbrowser.open(telegram_deeplink)
-
-        time.sleep(3) #optional
-    except:
-        webbrowser.open(web_fallback_link)
-
-redirect_with_telegram_check()
+redirect_to_telegram()
 
 # -----------------------------------------------------------------
 
