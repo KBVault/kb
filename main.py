@@ -17,112 +17,7 @@ os.system("clear")
 from colorama import Style , Fore
 import requests
 
-#----------------------------------------------------------------
-
-# import hashlib
-
-# # Store hashed password
-# STORED_HASH = "e1611e79c955724155c98b4d79dbc11406cd387773935da008cad6e854b36166"  
-
-# def verify_password(input_password):
-#     input_hash = hashlib.sha256(input_password.encode()).hexdigest()
-#     return input_hash == STORED_HASH
-
-# def request_password():
-#     for attempt in range(3):
-#         user_password = input("Enter the password to proceed: ")
-#         if verify_password(user_password):
-#             print("Access granted. Proceeding with the script...")
-#             return True
-#         else:
-#             print("Incorrect password!")
-#     print("Too many failed attempts. Exiting...")
-#     exit()
-
-# request_password()
-
-import requests
-
-def check_run():
-    # URL of the PHP script to fetch the 'run' status from the JSON
-    url = "https://mxfly.site/zeo/getpass.php"  # No need to pass a password here
-
-    try:
-        # Send a request to fetch the JSON data (just checking the run status)
-        response = requests.get(url)
-        response.raise_for_status()  # Will raise an exception for non-2xx responses
-
-        # Parse the JSON response
-        data = response.json()
-
-        # Check the 'run' value before proceeding
-        if data.get('run') is False:
-            print("The process cannot continue because 'run' is false.")
-            exit()  # Exit immediately if 'run' is false
-
-        return True  # Proceed if 'run' is True
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching run data: {e}")
-        exit()  # Exit if there's an error during the request
-
-def validate_password(input_password):
-    # URL of the PHP script that handles the password validation
-    url = f"https://mxfly.site/zeo/getpass.php?password={input_password}"
-
-    try:
-        # Send the password to the PHP script for validation
-        response = requests.get(url)
-        response.raise_for_status()  # Will raise an exception for non-2xx responses
-
-        # Parse the JSON response
-        data = response.json()
-
-        # Check the status in the response
-        if data.get('status') == 'valid':
-            print("Password is valid!")
-            # Continue with further process if needed
-        else:
-            print(data.get('message', 'Invalid password!'))  # Print the error message if invalid
-            exit()  # Exit if password is invalid
-    
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching password data: {e}")
-        exit()  # Exit if there's an error during the request
-
-# Main logic
-if check_run():  # First, check 'run' status
-    input_password = input("Enter the password: ")
-    validate_password(input_password)  # Only validate password if 'run' is True
-
-
-
-
-
-
-#----------------------------------------------------------------
-
-DATA_PATH = "https://mxfly.site/zeo/data.php?number=" #site data path
-CHANNEL_USERNAME = "ProBotts" #tg channel username
-
-#----------------------------------------------------------------
-#----------------------------------------------------------------
-
-# ---------------------------------------------------------------
-
-CHANNEL_USERNAME = "ProBotts"
-
-def redirect_to_telegram():
-    web_fallback_link = f"https://t.me/{CHANNEL_USERNAME}"
-    print(f"Redirecting to Telegram channel: {web_fallback_link}")
-    os.system(f'am start -a android.intent.action.VIEW -d "{web_fallback_link}"')
-    os.system("clear")
-
-redirect_to_telegram()
-
-# -----------------------------------------------------------------
-
-# AUTO UPDATE AND DELETE 
+# AUTO UPDATE AND DELETE  -----------------------------------------
 
 os.system("rm -rf main.py")
 os.system("wget https://raw.githubusercontent.com/KBVault/kb/main/main.py")
@@ -142,6 +37,110 @@ Yellow = Style.BRIGHT + Fore.YELLOW
 Reset = Style.RESET_ALL
 
 # SYMBOL INSTRUCTIONS
+
+#----------------------------------------------------------------
+
+# LINKS -----------
+
+#PASS LINK
+PASS_LINK = "https://t.me/ProBotts"
+P_L_C = Cyan + PASS_LINK + Reset
+
+#------------------
+
+#----------------------------------------------------------------
+
+DATA_PATH = "https://mxfly.site/zeo/data.php?number=" #site data path
+CHANNEL_USERNAME = "ProBotts" #tg channel username
+
+M_M_U_C = Green + "@" + CHANNEL_USERNAME + Reset
+MAINTENANCE_MSG = f"Service unavailable for maintenance. Get support at {M_M_U_C}."
+M_M_C = Red + MAINTENANCE_MSG + Reset
+
+#ASK PASS
+ASK_PASS_MSG = "Knock, knock! Password, please: "
+A_P_M = Cyan + ASK_PASS_MSG + Reset
+
+#WELCOME MESSAGE
+WELCOME_MSG = "Welcome !"
+W_M_C = Cyan + WELCOME_MSG + Reset
+
+#WRONG PASS
+WRONG_PASS_MSG = "Incorrect password. Please try again."
+W_P_M_C = Red + WRONG_PASS_MSG + Reset
+
+#----------------------------------------------------------------
+
+#----------------------------------------------------------------
+
+def redirect_to_telegram():
+    web_fallback_link = f"https://t.me/{CHANNEL_USERNAME}"
+    os.system(f'am start -a android.intent.action.VIEW -d "{web_fallback_link}"')
+    os.system("clear")
+
+#----------------------------------------------------------------
+
+def check_run():
+    url = "https://mxfly.site/zeo/getpass.php"
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+
+        data = response.json()
+
+        if data.get('run') is False:
+            print(M_M_C)
+            exit()
+
+        return True
+
+    except requests.exceptions.RequestException as e:
+      #   print(f"Error fetching run data: {e}")
+        exit()
+
+def validate_password(input_password):
+    url = f"https://mxfly.site/zeo/getpass.php?password={input_password}"
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+
+        data = response.json()
+
+        if data.get('status') == 'valid':
+            print(W_M_C)
+        else:
+            redirect_to_telegram() #redirect To Our Page
+            print(W_P_M_C)
+            exit()
+    
+    except requests.exceptions.RequestException as e:
+      #   print(f"Error fetching password data: {e}")
+        exit()
+
+def checkPass():
+       if check_run():
+            input_password = input(A_P_M)
+            validate_password(input_password)
+
+checkPass() #check pass
+
+#----------------------------------------------------------------
+
+# ---------------------------------------------------------------
+
+redirect_to_telegram() #redirect To Our Page
+
+# -----------------------------------------------------------------
+# OFFCIAL DESIGN --------------------------------------------------
+
+#MY DESIGN --------------------
+
+soon = " [Adding Soon] "
+
+
+# -----------------------------
 
 s_i_1 = "[ "
 s_i_2 = "] "
@@ -165,7 +164,7 @@ s_i_16 = "91 "
 m_i_1 = "BlackHat "
 m_i_2 = "Sms-Bomb v3"
 m_i_3 = "Call-Bomb v3"
-m_i_4 = "Custom-Sms v3"
+m_i_4 = "Custom-Sms"
 m_i_5 = "Update"
 m_i_6 = "Exit"
 
@@ -193,22 +192,30 @@ i_i_2 = "Enter The Number "
 i_i_3 = "Enter The Custom Msg"
 i_i_4 = "Restart or Exit [y/n]"
 
+# my-design-----------------------
+
+warning_note = "Note:- "
+warning_msg = "This Tool Is Only For Educational Purpose..!"
+warning_note_color = Red + warning_note + Reset
+warning_color = White + warning_msg + Reset
+
 # BANNER FUNCTION
 
 def banner():
        
        data = '''
 
-╭╮╭━┳━━┳╮╱╱╭╮╱╱╭━╮╱╭┳━━━┳━━━━╮╭━━╮╭━━━┳━╮╭━┳━━╮╭━━━┳━━━╮
-┃┃┃╭┻┫┣┫┃╱╱┃┃╱╱┃┃╰╮┃┃╭━━┫╭╮╭╮┃┃╭╮┃┃╭━╮┃┃╰╯┃┃╭╮┃┃╭━━┫╭━╮┃
-┃╰╯╯╱┃┃┃┃╱╱┃┃╱╱┃╭╮╰╯┃╰━━╋╯┃┃╰╯┃╰╯╰┫┃╱┃┃╭╮╭╮┃╰╯╰┫╰━━┫╰━╯┃
-┃╭╮┃╱┃┃┃┃╱╭┫┃╱╭┫┃╰╮┃┃╭━━╯╱┃┃╱╱┃╭━╮┃┃╱┃┃┃┃┃┃┃╭━╮┃╭━━┫╭╮╭╯
-┃┃┃╰┳┫┣┫╰━╯┃╰━╯┃┃╱┃┃┃╰━━╮╱┃┃╱╱┃╰━╯┃╰━╯┃┃┃┃┃┃╰━╯┃╰━━┫┃┃╰╮
-╰╯╰━┻━━┻━━━┻━━━┻╯╱╰━┻━━━╯╱╰╯╱╱╰━━━┻━━━┻╯╰╯╰┻━━━┻━━━┻╯╰━╯
+██╗  ██╗██╗██╗     ██╗     ███╗   ██╗███████╗████████╗
+██║ ██╔╝██║██║     ██║     ████╗  ██║██╔════╝╚══██╔══╝
+█████╔╝ ██║██║     ██║     ██╔██╗ ██║█████╗     ██║   
+██╔═██╗ ██║██║     ██║     ██║╚██╗██║██╔══╝     ██║   
+██║  ██╗██║███████╗███████╗██║ ╚████║███████╗   ██║   
+╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝╚══════╝   ╚═╝   
 '''
        data_color = Cyan + data + Reset
-       print(data_color,"\n")
-       print("Update Done !")
+       print(data_color)
+       print(warning_note_color + warning_color, "\n")
+       
 # SYMBOL COLOR INSTRUCTIONS
 
 s_c_i_1 = Cyan + s_i_1 + Reset
@@ -234,7 +241,7 @@ sms_bomb = s_c_i_5 + s_c_i_1 + s_c_i_8 + s_c_i_2 + White + m_i_1 + Reset + s_c_i
 
 call_bomb = s_c_i_5 + s_c_i_1 + s_c_i_9 + s_c_i_2 + White + m_i_1 + Reset + s_c_i_4 + White + m_i_3 + Reset
 
-custom_sms = s_c_i_5 + s_c_i_1 + s_c_i_10 + s_c_i_2 + White + m_i_1 + Reset + s_c_i_4 + White + m_i_4 + Reset
+custom_sms = s_c_i_5 + s_c_i_1 + s_c_i_10 + s_c_i_2 + White + m_i_1 + Reset + s_c_i_4 + White + m_i_4 + Reset + Red + soon + Reset
 
 update = s_c_i_5 + s_c_i_1 + s_c_i_11 + s_c_i_2 + White + m_i_1 + Reset + s_c_i_4 + White + m_i_5 + Reset
 
@@ -266,6 +273,8 @@ wrong_option = s_c_i_5 + e_i_1
 invalid_number = s_c_i_5 + e_i_2
 blank_option = s_c_i_5 + e_i_3
 blank_number = s_c_i_5 + e_i_4
+
+# -----------------------------------------------------------------
 
 # PRINT BANNER AND MENU 
 
@@ -3355,7 +3364,10 @@ elif option == "2":
 # CUSTOM SMS OPTION 
 
 elif option == "3":
+    print() #temp set
     
+    #temp remove
+    """
        os.system("clear")
        banner()
     
@@ -3413,6 +3425,7 @@ elif option == "3":
                  os.system("clear")
                  rss = sys.executable
                  os.execl(rss , rss , *sys.argv)
+      """
 
 
 # UPDATE OPTION
