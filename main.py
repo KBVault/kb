@@ -42,8 +42,11 @@ Reset = Style.RESET_ALL
 
 # my-design-----------------------
 
+BANNER_LINK = "Web:- "
+BANNER_COLOR = Red + BANNER_LINK + Reset + Green + "www.mxfly.in" + Reset
+
 warning_note = "Note:- "
-warning_msg = "This Tool Is Only For Educational Purpose..!"
+warning_msg = "Please Use For Educational Purpose Only...!!"
 warning_note_color = Red + warning_note + Reset
 warning_color = White + warning_msg + Reset
 
@@ -51,14 +54,15 @@ warning_color = White + warning_msg + Reset
 
 def banner():
        
-       data = '''
+       data = f'''
 
-██╗  ██╗██╗██╗     ██╗     ███╗   ██╗███████╗████████╗
-██║ ██╔╝██║██║     ██║     ████╗  ██║██╔════╝╚══██╔══╝
-█████╔╝ ██║██║     ██║     ██╔██╗ ██║█████╗     ██║   
-██╔═██╗ ██║██║     ██║     ██║╚██╗██║██╔══╝     ██║   
-██║  ██╗██║███████╗███████╗██║ ╚████║███████╗   ██║   
-╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝╚══════╝   ╚═╝   
+   ██╗  ██╗██╗██╗     ██╗     ███╗   ██╗███████╗████████╗
+   ██║ ██╔╝██║██║     ██║     ████╗  ██║██╔════╝╚══██╔══╝
+   █████╔╝ ██║██║     ██║     ██╔██╗ ██║█████╗     ██║   
+   ██╔═██╗ ██║██║     ██║     ██║╚██╗██║██╔══╝     ██║   
+   ██║  ██╗██║███████╗███████╗██║ ╚████║███████╗   ██║   
+   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝╚══════╝   ╚═╝   
+                  {BANNER_COLOR} 
 '''
        data_color = Cyan + data + Reset
        print(data_color)
@@ -67,15 +71,26 @@ def banner():
 # LINKS -----------
 
 #PASS LINK
-PASS_LINK = "https://t.me/ProBotts"
+PASS_LINK = "https://bit.ly/KbPass"
 P_L_C = Cyan + PASS_LINK + Reset
 
+#CHANNEL LINK
+CHANNEL_LINK = "https://t.me/KillnetBomber"
+C_L_C = Cyan + CHANNEL_LINK + Reset
+
+#GROUP LINK
+GROUP_LINK = "https://t.me/ProBotGc"
+G_L_C = Cyan + GROUP_LINK + Reset
+
+#WEBSITE LINK
+WEB_LINK = "https://mxfly.in"
+W_L_C = Cyan + WEB_LINK + Reset
 #------------------
 
 #----------------------------------------------------------------
 
 DATA_PATH = "https://mxfly.site/zeo/data.php?number=" #site data path
-CHANNEL_USERNAME = "ProBotts" #tg channel username
+CHANNEL_USERNAME = "KillnetBomber" #tg channel username
 
 M_M_U_C = Green + "@" + CHANNEL_USERNAME + Reset
 MAINTENANCE_MSG = f"Service unavailable for maintenance. Get support at {M_M_U_C}."
@@ -87,7 +102,7 @@ A_P_M = Cyan + ASK_PASS_MSG + Reset
 
 #WELCOME MESSAGE
 WELCOME_MSG = "Welcome !"
-W_M_C = Cyan + WELCOME_MSG + Reset
+W_M_C = Green + WELCOME_MSG + Reset
 
 #WRONG PASS
 WRONG_PASS_MSG = "Incorrect password. Please try again."
@@ -100,6 +115,14 @@ W_P_M_C = Red + WRONG_PASS_MSG + Reset
 def redirect_to_telegram():
     web_fallback_link = f"https://t.me/{CHANNEL_USERNAME}"
     os.system(f'am start -a android.intent.action.VIEW -d "{web_fallback_link}"')
+    os.system("clear")
+
+def redirect_to_website():
+    os.system(f'am start -a android.intent.action.VIEW -d "{WEB_LINK}"')
+    os.system("clear")
+
+def redirect_to_pass():
+    os.system(f'am start -a android.intent.action.VIEW -d "{PASS_LINK}"')
     os.system("clear")
 
 #----------------------------------------------------------------
@@ -116,6 +139,9 @@ def check_run():
         if data.get('run') is False:
             banner()
             print(M_M_C)
+            sleep(5)
+            redirect_to_telegram()
+            time.sleep(4)
             exit()
 
         return True
@@ -139,11 +165,13 @@ def validate_password(input_password):
         else:
             banner()
             print(W_P_M_C)
+            sleep(4)
             redirect_to_telegram() #redirect To Our Page
+            sleep(3)
             exit()
     
     except requests.exceptions.RequestException as e:
-      #   print(f"Error fetching password data: {e}")
+        redirect_to_telegram() #redirect To Our Page
         exit()
 
 def checkPass():
@@ -190,8 +218,8 @@ s_i_16 = "91 "
 # MENU INSTRUCTIONS
 
 m_i_1 = "BlackHat "
-m_i_2 = "Sms-Bomb v3"
-m_i_3 = "Call-Bomb v3"
+m_i_2 = "Sms-Bomb"
+m_i_3 = "Call-Bomb"
 m_i_4 = "Custom-Sms"
 m_i_5 = "Update"
 m_i_6 = "Exit"
