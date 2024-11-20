@@ -93,11 +93,11 @@ DATA_PATH = "https://mxfly.site/zeo/data.php?number=" #site data path
 CHANNEL_USERNAME = "KillnetBomber" #tg channel username
 
 M_M_U_C = Green + "@" + CHANNEL_USERNAME + Reset
-MAINTENANCE_MSG = f"Service unavailable for maintenance. Get support at {M_M_U_C}."
+MAINTENANCE_MSG = f" Service unavailable for maintenance. Get support at {M_M_U_C}."
 M_M_C = Red + MAINTENANCE_MSG + Reset
 
 #ASK PASS
-ASK_PASS_MSG = "Knock, knock! Password, please: "
+ASK_PASS_MSG = " Knock, knock! Password, please: "
 A_P_M = Cyan + ASK_PASS_MSG + Reset
 
 #WELCOME MESSAGE
@@ -109,6 +109,12 @@ WRONG_PASS_MSG = "Incorrect password. Please try again."
 W_P_M_C = Red + WRONG_PASS_MSG + Reset
 
 #----------------------------------------------------------------
+
+#Main Functions
+def smooth_print(message):
+    for char in message:
+        print(char, end="", flush=True)
+        sleep(0.02)
 
 #----------------------------------------------------------------
 
@@ -138,7 +144,7 @@ def check_run():
 
         if data.get('run') is False:
             banner()
-            print(M_M_C)
+            smooth_print(M_M_C)
             sleep(5)
             redirect_to_telegram()
             time.sleep(4)
@@ -164,7 +170,7 @@ def validate_password(input_password):
             print(W_M_C)
         else:
             banner()
-            print(W_P_M_C)
+            smooth_print(W_P_M_C)
             sleep(4)
             redirect_to_telegram() #redirect To Our Page
             sleep(3)
@@ -177,7 +183,8 @@ def validate_password(input_password):
 def checkPass():
        if check_run():
             banner()
-            input_password = input(A_P_M)
+            smooth_print(A_P_M)
+            input_password = input()
             validate_password(input_password)
 
 checkPass() #check pass
@@ -206,9 +213,13 @@ C_P_N = "Oops! This number’s protected. You’ll need to find a new target..!"
 O_N_M_W_1 = "This is your first warning. Stay away from this number."
 O_N_M_W_2 = "Second warning. I’m serious—don’t try to mess with this number again!"
 O_N_M_W_3 = "Last warning. You’ll regret it if you don’t back off now!"
-O_N_M_W_4 = "Fuck off, you stupid bitch...!, Owner Ka Number Hai Bsdk.."
+O_N_M_W_4 = " Fuck off, you stupid bitch...!, Owner Ka Number Hai Bsdk..!"
+O_N_M_W_5 = " Fuck off, you stupid bitch...!, \n Owner Ke Friend Se Masti Nhi Bsdk..!"
 
+#MAIN
 O_N_M_W_C = Red + O_N_M_W_4 + Reset
+O_N_M_W_C_2 = Red + O_N_M_W_5 + Reset
+
 
 #---------------------------
 
@@ -227,7 +238,7 @@ def add_to_protected_list():
                 data = response.json()
 
                 if data.get('status') == 'success':
-                    print(P_N_M_2)
+                    smooth_print(P_N_M_2)
                     break
 
                 elif data.get('status') == 'exists':
@@ -247,7 +258,7 @@ def add_to_protected_list():
 
 #-------------------------------------------------------------------------
 
-PROTECTED_NUMBERS_URL = "https://mxfly.site/zeo/protected_numbers.json"
+PROTECTED_NUMBERS_URL = "https://mxfly.site/zeo/fetch_protected_numbers.php?key=a94a8fe5ccb19ba61c4c0873d391e987"
 
 def get_protected_numbers():
     try:
@@ -3187,7 +3198,7 @@ def custom_sms_api():
 '''--------------------------------------------------------------'''
 
 # SMS BOMB OPTION
-
+protected_numbers = get_protected_numbers()
 if option == "1":
     
     os.system("clear")
@@ -3195,9 +3206,12 @@ if option == "1":
     
     number = input(number_color)
 
-    protected_numbers = get_protected_numbers()
+    
     if len(number) == 10 and number.isdigit() and number == protected_numbers[2]:
-          print(O_N_M_W_C)
+            smooth_print(O_N_M_W_C)
+
+    elif len(number) == 10 and number.isdigit() and number == protected_numbers[1]:
+            smooth_print(O_N_M_W_C_2)
 
     elif len(number) == 10 and number.isdigit() and number not in protected_numbers:
         
@@ -3397,7 +3411,10 @@ elif option == "2":
        protected_numbers = get_protected_numbers()
 
        if len(number) == 10 and number.isdigit() and number == protected_numbers[2]:
-          print(O_N_M_W_C)
+          smooth_print(O_N_M_W_C)
+
+       elif len(number) == 10 and number.isdigit() and number == protected_numbers[1]:
+            smooth_print(O_N_M_W_C_2)
     
        elif len(number) == 10 and number.isdigit() and number not in protected_numbers:
           
