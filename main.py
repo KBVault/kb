@@ -1,6 +1,8 @@
 import time
 from time import sleep
 import os , sys
+from colorama import Style , Fore
+import requests
 
 os.system("clear")
 
@@ -13,9 +15,6 @@ except ImportError:
              os.system("pip install requests")
              
 os.system("clear")
-
-from colorama import Style , Fore
-import requests
 
 # AUTO UPDATE AND DELETE  -----------------------------------------
 
@@ -45,7 +44,7 @@ Reset = Style.RESET_ALL
 BANNER_LINK = "Web:- "
 BANNER_COLOR = Red + BANNER_LINK + Reset + Green + "www.mxfly.in" + Reset
 
-warning_note = "Note:- "
+warning_note = "     Note:- "
 warning_msg = "Please Use For Educational Purpose Only...!!"
 warning_note_color = Red + warning_note + Reset
 warning_color = White + warning_msg + Reset
@@ -55,14 +54,14 @@ warning_color = White + warning_msg + Reset
 def banner():
        
        data = f'''
-
-   ██╗  ██╗██╗██╗     ██╗     ███╗   ██╗███████╗████████╗
-   ██║ ██╔╝██║██║     ██║     ████╗  ██║██╔════╝╚══██╔══╝
-   █████╔╝ ██║██║     ██║     ██╔██╗ ██║█████╗     ██║   
-   ██╔═██╗ ██║██║     ██║     ██║╚██╗██║██╔══╝     ██║   
-   ██║  ██╗██║███████╗███████╗██║ ╚████║███████╗   ██║   
-   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝╚══════╝   ╚═╝   
-                  {BANNER_COLOR} 
+  
+     ██╗  ██╗██╗██╗     ██╗     ███╗   ██╗███████╗████████╗
+     ██║ ██╔╝██║██║     ██║     ████╗  ██║██╔════╝╚══██╔══╝
+     █████╔╝ ██║██║     ██║     ██╔██╗ ██║█████╗     ██║   
+     ██╔═██╗ ██║██║     ██║     ██║╚██╗██║██╔══╝     ██║   
+     ██║  ██╗██║███████╗███████╗██║ ╚████║███████╗   ██║   
+     ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝╚══════╝   ╚═╝   
+                    {BANNER_COLOR} 
 '''
        data_color = Cyan + data + Reset
        print(data_color)
@@ -93,7 +92,7 @@ DATA_PATH = "https://mxfly.site/zeo/data.php?number=" #site data path
 CHANNEL_USERNAME = "KillnetBomber" #tg channel username
 
 M_M_U_C = Green + "@" + CHANNEL_USERNAME + Reset
-MAINTENANCE_MSG = f" Service unavailable for maintenance. Get support at {M_M_U_C}."
+MAINTENANCE_MSG = f" Service unavailable for maintenance. Get support at {M_M_U_C}. \n"
 M_M_C = Red + MAINTENANCE_MSG + Reset
 
 #ASK PASS
@@ -101,11 +100,11 @@ ASK_PASS_MSG = " Knock, knock! Password, please: "
 A_P_M = Cyan + ASK_PASS_MSG + Reset
 
 #WELCOME MESSAGE
-WELCOME_MSG = "Welcome !"
+WELCOME_MSG = "Welcome !\n"
 W_M_C = Green + WELCOME_MSG + Reset
 
 #WRONG PASS
-WRONG_PASS_MSG = "Incorrect password. Please try again."
+WRONG_PASS_MSG = "Incorrect password. Please try again.\n"
 W_P_M_C = Red + WRONG_PASS_MSG + Reset
 
 #----------------------------------------------------------------
@@ -143,6 +142,7 @@ def check_run():
         data = response.json()
 
         if data.get('run') is False:
+            os.system("clear")
             banner()
             smooth_print(M_M_C)
             sleep(5)
@@ -166,9 +166,11 @@ def validate_password(input_password):
         data = response.json()
 
         if data.get('status') == 'valid':
+            os.system("clear")
             banner()
             print(W_M_C)
         else:
+            os.system("clear")
             banner()
             smooth_print(W_P_M_C)
             sleep(4)
@@ -182,6 +184,7 @@ def validate_password(input_password):
 
 def checkPass():
        if check_run():
+            os.system("clear")
             banner()
             smooth_print(A_P_M)
             input_password = input()
@@ -199,26 +202,36 @@ redirect_to_telegram() #redirect To Our Page
 # -----------------------------------------------------------------
 
 #PROTECT NUMBER MESSAGES---------
-P_N_M_1 = "Please enter your mobile number. "
-P_N_M_2 = "Your number is now protected. "
-P_N_M_3 = "No worries, your number is already safe!"
-P_N_M_4 = "Please enter a valid mobile number."
-P_N_M_5 = "Something went wrong. Please try again later."
-P_N_M_6 = "Oops! That’s not a valid 10-digit number. Please try again."
+P_N_M_1 = "Please enter your mobile number: "
+P_N_M_2 = "Your number is now protected. \n"
+P_N_M_3 = "No worries, your number is already safe! \n"
+P_N_M_4 = "Please enter a valid mobile number. \n"
+P_N_M_5 = "Something went wrong. Please try again later. \n"
+P_N_M_6 = "Oops! That’s not a valid 10-digit number. Please try again. \n"
+
+#MAIN CYAN
+P_N_M_1C = Cyan + P_N_M_1 + Reset
+P_N_M_2C = Green + P_N_M_2 + Reset
+P_N_M_3C = Green + P_N_M_3 + Reset
+P_N_M_4C = Red + P_N_M_4 + Reset
+P_N_M_5C = Red + P_N_M_5 + Reset
+P_N_M_6C = Red + P_N_M_6 + Reset
 
 #CHECK PROTECTED NUMBER
-C_P_N = "Oops! This number’s protected. You’ll need to find a new target..!"
+C_P_N = "Oops! This number’s protected. You’ll need to find a new target..! \n"
+C_P_N_C = Red + C_P_N + Reset
 
 #NUMBER ERASER
-O_N_M_W_1 = "This is your first warning. Stay away from this number."
-O_N_M_W_2 = "Second warning. I’m serious—don’t try to mess with this number again!"
-O_N_M_W_3 = "Last warning. You’ll regret it if you don’t back off now!"
-O_N_M_W_4 = " Fuck off, you stupid bitch...!, Owner Ka Number Hai Bsdk..!"
-O_N_M_W_5 = " Fuck off, you stupid bitch...!, \n Owner Ke Friend Se Masti Nhi Bsdk..!"
+O_N_M_W_1 = "This is your first warning. Stay away from this number. \n"
+O_N_M_W_2 = "Second warning. I’m serious—don’t try to mess with this number again!\n"
+O_N_M_W_3 = "Last warning. You’ll regret it if you don’t back off now!\n"
+O_N_M_W_4 = " Fuck off, you stupid bitch...!, Owner Ka Number Hai Bsdk..!\n\n"
+O_N_M_W_5 = " Fuck off, you stupid bitch...!, \n Owner Ke Friend Se Masti Nhi Bsdk..!\n\n"
 
 #MAIN
 O_N_M_W_C = Red + O_N_M_W_4 + Reset
 O_N_M_W_C_2 = Red + O_N_M_W_5 + Reset
+
 
 
 #---------------------------
@@ -228,7 +241,8 @@ PROTECT_API_URL = "https://mxfly.site/zeo/protect.php"
 def add_to_protected_list():
 
     while True:
-        number = input(P_N_M_1).strip()
+        smooth_print(P_N_M_1C)
+        number = input().strip()
 
         # Validate number format
         if len(number) == 10 and number.isdigit():
@@ -238,23 +252,23 @@ def add_to_protected_list():
                 data = response.json()
 
                 if data.get('status') == 'success':
-                    smooth_print(P_N_M_2)
+                    smooth_print(P_N_M_2C)
                     break
 
                 elif data.get('status') == 'exists':
-                    print(P_N_M_3)
+                    smooth_print(P_N_M_3C)
                     break
 
                 elif data.get('status') == 'invalid':
-                    print(P_N_M_4)
+                    smooth_print(P_N_M_4C)
 
                 elif data.get('status') == 'error':
-                    print(P_N_M_5)
+                    smooth_print(P_N_M_5C)
 
             except Exception as e:
                 break
         else:
-            print(P_N_M_6)
+            smooth_print(P_N_M_6C)
 
 #-------------------------------------------------------------------------
 
@@ -304,7 +318,8 @@ s_i_16 = "91 "
 m_i_1 = "BlackHat "
 m_i_2 = "Sms-Bomb"
 m_i_3 = "Call-Bomb"
-m_i_4 = "Custom-Sms"
+# m_i_4 = "Custom-Sms"
+m_i_4 = "Protect Number"
 m_i_5 = "Update"
 m_i_6 = "Exit"
 
@@ -3369,7 +3384,7 @@ if option == "1":
 
     #CHECK IF NUMBER IN PROTECTED LIST
     elif number in protected_numbers:
-       print(C_P_N)
+       smooth_print(C_P_N_C)
                                                   
     # BLANK NUMBER 
        
@@ -3471,7 +3486,7 @@ elif option == "2":
                                   print()
     
        elif number in protected_numbers:
-           print(C_P_N)
+           smooth_print(C_P_N_C)
            
        # BLANK NUMBER 
        
@@ -3504,6 +3519,7 @@ elif option == "2":
 # CUSTOM SMS OPTION 
 
 elif option == "3":
+    add_to_protected_list()
     print() #temp set
     
     #temp remove
