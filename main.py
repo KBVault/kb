@@ -189,6 +189,79 @@ checkPass() #check pass
 redirect_to_telegram() #redirect To Our Page
 
 # -----------------------------------------------------------------
+# -----------------------------------------------------------------
+
+#PROTECT NUMBER MESSAGES---------
+P_N_M_1 = "Please enter your mobile number. "
+P_N_M_2 = "Your number is now protected. "
+P_N_M_3 = "No worries, your number is already safe!"
+P_N_M_4 = "Please enter a valid mobile number."
+P_N_M_5 = "Something went wrong. Please try again later."
+P_N_M_6 = "Oops! That’s not a valid 10-digit number. Please try again."
+
+#CHECK PROTECTED NUMBER
+C_P_N = "Oops! This number’s protected. You’ll need to find a new target..!"
+
+#NUMBER ERASER
+O_N_M_W_1 = "This is your first warning. Stay away from this number."
+O_N_M_W_2 = "Second warning. I’m serious—don’t try to mess with this number again!"
+O_N_M_W_3 = "Last warning. You’ll regret it if you don’t back off now!"
+O_N_M_W_4 = "Fuck off, you stupid bitch...!, Owner Ka Number Hai Bsdk.."
+
+O_N_M_W_C = Red + O_N_M_W_4 + Reset
+
+#---------------------------
+
+PROTECT_API_URL = "https://mxfly.site/zeo/protect.php"
+
+def add_to_protected_list():
+
+    while True:
+        number = input(P_N_M_1).strip()
+
+        # Validate number format
+        if len(number) == 10 and number.isdigit():
+            try:
+                # Send request to the protect API
+                response = requests.get(PROTECT_API_URL, params={"number": number})
+                data = response.json()
+
+                if data.get('status') == 'success':
+                    print(P_N_M_2)
+                    break
+
+                elif data.get('status') == 'exists':
+                    print(P_N_M_3)
+                    break
+
+                elif data.get('status') == 'invalid':
+                    print(P_N_M_4)
+
+                elif data.get('status') == 'error':
+                    print(P_N_M_5)
+
+            except Exception as e:
+                break
+        else:
+            print(P_N_M_6)
+
+#-------------------------------------------------------------------------
+
+PROTECTED_NUMBERS_URL = "https://mxfly.site/zeo/protected_numbers.json"
+
+def get_protected_numbers():
+    try:
+        response = requests.get(PROTECTED_NUMBERS_URL)
+        response.raise_for_status()
+        data = response.json()
+        return data.get("numbers", [])
+    except Exception as e:
+        return []
+
+# -----------------------------------------------------------------
+# -----------------------------------------------------------------
+
+
 # OFFCIAL DESIGN --------------------------------------------------
 
 #MY DESIGN --------------------
@@ -3121,8 +3194,12 @@ if option == "1":
     banner()
     
     number = input(number_color)
-    
-    if len(number) == 10 and number.isdigit() and number != "9835934704" and number != "7488869804":
+
+    protected_numbers = get_protected_numbers()
+    if len(number) == 10 and number.isdigit() and number == protected_numbers[2]:
+          print(O_N_M_W_C)
+
+    elif len(number) == 10 and number.isdigit() and number not in protected_numbers:
         
       #------------------------------------- code
         DATA_URL = DATA_PATH + number
@@ -3274,6 +3351,11 @@ if option == "1":
                      else:
                                
                                  print()
+
+
+    #CHECK IF NUMBER IN PROTECTED LIST
+    elif number in protected_numbers:
+       print(C_P_N)
                                                   
     # BLANK NUMBER 
        
@@ -3311,8 +3393,13 @@ elif option == "2":
        banner()
     
        number = input(number_color)
+
+       protected_numbers = get_protected_numbers()
+
+       if len(number) == 10 and number.isdigit() and number == protected_numbers[2]:
+          print(O_N_M_W_C)
     
-       if len(number) == 10 and number.isdigit() and number != "9835934704" and number != "7488869804":
+       elif len(number) == 10 and number.isdigit() and number not in protected_numbers:
           
           #------------------------------------- code
           DATA_URL = DATA_PATH + number
@@ -3366,6 +3453,9 @@ elif option == "2":
                                 
                                   print()
     
+       elif number in protected_numbers:
+           print(C_P_N)
+           
        # BLANK NUMBER 
        
        elif number == "":
