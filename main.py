@@ -99,13 +99,18 @@ M_M_C = Red + MAINTENANCE_MSG + Reset
 ASK_PASS_MSG = " Knock, knock! Password, please: "
 A_P_M = Cyan + ASK_PASS_MSG + Reset
 
+FIND_PASS_MSG = f"You can find the password on our official Channel: @{CHANNEL_USERNAME} \n\n"
+F_P_M = Green + FIND_PASS_MSG + Reset
+
 #WELCOME MESSAGE
-WELCOME_MSG = "Welcome !\n"
+WELCOME_MSG = "Welcome to Killnet Bomber! Let the chaos begin—use responsibly !"
 W_M_C = Green + WELCOME_MSG + Reset
 
 #WRONG PASS
 WRONG_PASS_MSG = "Incorrect password. Please try again.\n"
+WRONG_PASS_MSG_2 = "Please visit our official Telegram channel to get the correct password.\n"
 W_P_M_C = Red + WRONG_PASS_MSG + Reset
+W_P_M_C_2 = Green + WRONG_PASS_MSG_2 + Reset
 
 #----------------------------------------------------------------
 
@@ -168,11 +173,14 @@ def validate_password(input_password):
         if data.get('status') == 'valid':
             os.system("clear")
             banner()
-            print(W_M_C)
+            smooth_print(W_M_C)
+            sleep(2)
         else:
             os.system("clear")
             banner()
             smooth_print(W_P_M_C)
+            sleep(0.5)
+            smooth_print(W_P_M_C_2)
             sleep(4)
             redirect_to_telegram() #redirect To Our Page
             sleep(3)
@@ -186,6 +194,7 @@ def checkPass():
        if check_run():
             os.system("clear")
             banner()
+            smooth_print(F_P_M)
             smooth_print(A_P_M)
             input_password = input()
             validate_password(input_password)
@@ -196,7 +205,7 @@ checkPass() #check pass
 
 # ---------------------------------------------------------------
 
-redirect_to_telegram() #redirect To Our Page
+redirect_to_website() #redirect To Our Page
 
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
@@ -3519,7 +3528,7 @@ elif option == "2":
 # CUSTOM SMS OPTION 
 
 elif option == "3":
-    add_to_protected_list()
+#     add_to_protected_list()
     print() #temp set
     
     #temp remove
