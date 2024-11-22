@@ -18,8 +18,9 @@ os.system("clear")
 
 # AUTO UPDATE AND DELETE  -----------------------------------------
 
-os.system("rm -rf main.py")
-os.system("wget https://raw.githubusercontent.com/KBVault/kb/main/main.py")
+print("  Starting....")
+os.system("rm -rf main.py >/dev/null 2>&1")
+os.system("wget https://raw.githubusercontent.com/KBVault/kb/main/main.py >/dev/null 2>&1")
 os.system("clear")
 
 # COLORAMA COLORS
