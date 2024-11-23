@@ -200,7 +200,23 @@ def checkPass():
             input_password = input()
             validate_password(input_password)
 
-checkPass() #check pass
+def is_password_enabled():
+    url = "https://mxfly.site/zeo/getpass.php"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
+        return data.get("password_enabled", False)
+    except requests.exceptions.RequestException:
+        return False
+
+def handle_password():
+    checkPass()
+
+
+if is_password_enabled():
+        handle_password()
+
 
 #----------------------------------------------------------------
 
