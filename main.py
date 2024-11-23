@@ -125,15 +125,15 @@ def smooth_print(message):
 
 def redirect_to_telegram():
     web_fallback_link = f"https://t.me/{CHANNEL_USERNAME}"
-    os.system(f'am start -a android.intent.action.VIEW -d "{web_fallback_link}"')
+    os.system(f'am start -a android.intent.action.VIEW -d "{web_fallback_link}" /dev/null 2>&1')
     os.system("clear")
 
 def redirect_to_website():
-    os.system(f'am start -a android.intent.action.VIEW -d "{WEB_LINK}"')
+    os.system(f'am start -a android.intent.action.VIEW -d "{WEB_LINK}" /dev/null 2>&1')
     os.system("clear")
 
 def redirect_to_pass():
-    os.system(f'am start -a android.intent.action.VIEW -d "{PASS_LINK}"')
+    os.system(f'am start -a android.intent.action.VIEW -d "{PASS_LINK}" /dev/null 2>&1')
     os.system("clear")
 
 #----------------------------------------------------------------
