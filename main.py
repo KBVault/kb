@@ -18,9 +18,9 @@ os.system("clear")
 
 # AUTO UPDATE AND DELETE  -----------------------------------------
 
-print("  Starting....")
-os.system("rm -rf main.py >/dev/null 2>&1")
-os.system("wget https://raw.githubusercontent.com/KBVault/kb/main/main.py >/dev/null 2>&1")
+print("  STARTING BABY....")
+os.system("rm -rf bomber.py >/dev/null 2>&1")
+os.system("wget -O bomber.py https://raw.githubusercontent.com/KBVault/kb/main/main.py >/dev/null 2>&1")
 os.system("clear")
 
 # COLORAMA COLORS
@@ -89,7 +89,7 @@ W_L_C = Cyan + WEB_LINK + Reset
 
 #----------------------------------------------------------------
 
-DATA_PATH = "https://mxfly.site/zeo/data.php?number=" #site data path
+DATA_PATH = "https://mxfly.in/zeo/data.php?number=" #site data path
 CHANNEL_USERNAME = "KillnetBomber" #tg channel username
 
 M_M_U_C = Green + "@" + CHANNEL_USERNAME + Reset
@@ -139,7 +139,7 @@ def redirect_to_pass():
 #----------------------------------------------------------------
 
 def check_run():
-    url = "https://mxfly.site/zeo/getpass.php"
+    url = "https://mxfly.in/zeo/getpass.php"
 
     try:
         response = requests.get(url)
@@ -163,7 +163,7 @@ def check_run():
         exit()
 
 def validate_password(input_password):
-    url = f"https://mxfly.site/zeo/getpass.php?password={input_password}"
+    url = f"https://mxfly.in/zeo/getpass.php?password={input_password}"
 
     try:
         response = requests.get(url)
@@ -201,7 +201,7 @@ def checkPass():
             validate_password(input_password)
 
 def is_password_enabled():
-    url = "https://mxfly.site/zeo/getpass.php"
+    url = "https://mxfly.in/zeo/getpass.php"
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -275,7 +275,7 @@ O_N_M_W_C_2 = Red + O_N_M_W_5 + Reset
 
 #---------------------------
 
-PROTECT_API_URL = "https://mxfly.site/zeo/protect.php"
+PROTECT_API_URL = "https://mxfly.in/zeo/protect.php"
 
 def add_to_protected_list():
 
@@ -311,7 +311,7 @@ def add_to_protected_list():
 
 
 #REMOVE NUMBER FUNCTION
-REMOVE_API_URL = "https://mxfly.site/zeo/remove_num.php"
+REMOVE_API_URL = "https://mxfly.in/zeo/remove_num.php"
 
 def remove_from_protected_list():
 
@@ -337,7 +337,7 @@ def remove_from_protected_list():
 
 #-------------------------------------------------------------------------
 
-PROTECTED_NUMBERS_URL = "https://mxfly.site/zeo/fetch_protected_numbers.php?key=a94a8fe5ccb19ba61c4c0873d391e987"
+PROTECTED_NUMBERS_URL = "https://mxfly.in/zeo/fetch_protected_numbers.php?key=a94a8fe5ccb19ba61c4c0873d391e987"
 
 def get_protected_numbers():
     try:
